@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professor Cathy Weng | NTUST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0d1b2e;
+      --paper: #f0f4f8;
+      --warm: #e8eef5;
+      --accent: #1a6eb5;
+      --accent2: #0e4d8a;
+      --gold: #4aa3df;
+      --muted: #4a6080;
+      --border: rgba(13, 27, 46, 0.12);
+      --navy: #0d1b2e;
+      --navy-mid: #152742;
+      --navy-deep: #091220;
+      --blue-bright: #2980d4;
+      --blue-light: #d6e8f7;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(13, 27, 46, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #f0f4f8;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(240, 244, 248, 0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #f0f4f8;
+    }
+
+    .lang-btn {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 0.5px solid rgba(255, 255, 255, 0.2);
+      padding: 0.35rem 0.8rem;
+      background: transparent;
+      color: rgba(240, 244, 248, 0.6);
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+    
+
+    /* HERO — full viewport video */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    /* video background */
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* layered dark gradient overlay — lighter so video is clearly visible */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to bottom,
+          rgba(9, 18, 32, 0.15) 0%,
+          rgba(9, 18, 32, 0.08) 30%,
+          rgba(9, 18, 32, 0.35) 65%,
+          rgba(9, 18, 32, 0.82) 100%);
+    }
+
+    /* subtle blue tint layer */
+    .hero-tint {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: rgba(13, 55, 120, 0.06);
+      mix-blend-mode: multiply;
+    }
+
+    /* content sits above all layers */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      padding: 0 3rem 0 3rem;
+      min-height: 100vh;
+    }
+
+    .hero-left {
+      padding: 8rem 3rem 5rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 0.5px;
+      background: var(--gold);
+    }
+
+    h1.hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.0;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      color: #f0f4f8;
+    }
+
+    h1.hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-zh {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: rgba(240, 244, 248, 0.5);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-roles {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 3rem;
+    }
+
+    .role-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(240, 244, 248, 0.75);
+      letter-spacing: 0.02em;
+    }
+
+    .role-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-green {
+      background: #4aa3df;
+    }
+
+    .dot-brown {
+      background: #7ec8f0;
+    }
+
+    .dot-gold {
+      background: #a8d8f0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--blue-bright);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #1a6eb5;
+    }
+
+    .btn-outline {
+      padding: 0.85rem 2rem;
+      border: 0.5px solid rgba(240, 244, 248, 0.4);
+      color: rgba(240, 244, 248, 0.85);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(240, 244, 248, 0.1);
+      border-color: rgba(240, 244, 248, 0.7);
+    }
+
+    /* photo + scroll cue on right */
+    .hero-right {
+      padding: 8rem 0 5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      border-left: 0.5px solid rgba(245, 242, 236, 0.1);
+    }
+
+    .hero-portrait {
+      width: 220px;
+      height: 280px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      border: 0.5px solid rgba(245, 242, 236, 0.15);
+      margin-bottom: 1.5rem;
+      opacity: 0.92;
+    }
+
+    .hero-portrait-placeholder {
+      width: 220px;
+      height: 280px;
+      background: rgba(245, 242, 236, 0.05);
+      border: 0.5px solid rgba(245, 242, 236, 0.15);
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    /* muted scroll indicator */
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 236, 0.35);
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 0.5px;
+      background: rgba(245, 242, 236, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(245, 242, 236, 0.6);
+      animation: scanline 2s ease-in-out infinite;
+    }
+
+    @keyframes scanline {
+      0% {
+        left: -100%
+      }
+
+      100% {
+        left: 100%
+      }
+    }
+
+    /* stat bar — anchored bottom full width */
+    .hero-stat-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: rgba(9, 18, 32, 0.88);
+      backdrop-filter: blur(16px);
+      border-top: 0.5px solid rgba(74, 163, 223, 0.2);
+    }
+
+    .stat-item {
+      padding: 1.5rem 2rem;
+      border-right: 0.5px solid rgba(74, 163, 223, 0.1);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240, 244, 248, 0.4);
+      margin-top: 0.3rem;
+    }
+
+    /* video mute toggle */
+    .video-ctrl {
+      position: absolute;
+      top: 6rem;
+      right: 1.5rem;
+      z-index: 10;
+      background: rgba(10, 9, 8, 0.5);
+      border: 0.5px solid rgba(245, 242, 236, 0.15);
+      color: rgba(245, 242, 236, 0.6);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      font-family: var(--sans);
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+
+    .video-ctrl:hover {
+      color: var(--paper);
+      border-color: rgba(245, 242, 236, 0.4);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 3rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--border);
+    }
+
+    h2.section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    h2.section-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* DUAL ROLE */
+    #dual-role {
+      background: var(--navy);
+      color: var(--paper);
+      padding: 5rem 3rem;
+    }
+
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .role-card {
+      padding: 3rem;
+      border-right: 0.5px solid rgba(74, 163, 223, 0.15);
+    }
+
+    .role-card:last-child {
+      border-right: none;
+    }
+
+    .role-card-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .role-card h3 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--paper);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .role-card p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(240, 244, 248, 0.65);
+      max-width: 36ch;
+    }
+
+    .role-card .role-detail {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .role-detail-item {
+      font-size: 0.78rem;
+      color: rgba(240, 244, 248, 0.5);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .role-detail-item::before {
+      content: '→';
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    /* TEACHING */
+    #teaching {
+      background: var(--paper);
+    }
+
+    .teaching-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 3rem;
+    }
+
+    .teach-card {
+      background: var(--warm);
+      padding: 2.5rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    .teach-card:hover {
+      background: var(--accent2);
+      color: var(--paper);
+    }
+
+    .teach-card:hover .teach-tag,
+    .teach-card:hover .teach-desc {
+      color: rgba(240, 244, 248, 0.7);
+    }
+
+    .teach-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .teach-card h4 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .teach-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* OUTREACH MENTAL HEALTH */
+    #outreach {
+      background: #0e2a4a;
+      color: var(--paper);
+    }
+
+    .outreach-inner {
+      max-width: 1100px;
+    }
+
+    .outreach-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      color: rgba(240, 244, 248, 0.9);
+      margin-bottom: 3rem;
+      border-left: 2px solid var(--gold);
+      padding-left: 2rem;
+      max-width: 70ch;
+    }
+
+    .outreach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .outreach-card {
+      border: 0.5px solid rgba(74, 163, 223, 0.2);
+      padding: 2rem;
+    }
+
+    .outreach-card h4 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--paper);
+    }
+
+    .outreach-card p {
+      font-size: 0.82rem;
+      color: rgba(240, 244, 248, 0.55);
+      line-height: 1.75;
+    }
+
+    .outreach-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(74, 163, 223, 0.12);
+      color: var(--gold);
+      border: 0.5px solid rgba(74, 163, 223, 0.25);
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    /* AFRICA */
+    #africa {
+      background: var(--paper);
+    }
+
+    .africa-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .africa-text p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .africa-countries {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .country-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 0.5px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      color: var(--muted);
+    }
+
+    .africa-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .africa-gallery img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .africa-gallery img:nth-child(1) {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/7;
+    }
+
+    .africa-gallery img:nth-child(2),
+    .africa-gallery img:nth-child(3),
+    .africa-gallery img:nth-child(4) {
+      aspect-ratio: 4/3;
+    }
+
+    /* RESEARCH THEMES */
+    #themes {
+      background: var(--navy);
+      color: var(--paper);
+      padding: 5rem 3rem;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 3rem;
+      background: rgba(74, 163, 223, 0.1);
+    }
+
+    .theme-card {
+      background: var(--navy-mid);
+      padding: 2.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .theme-card:hover {
+      background: var(--accent2);
+      border-bottom-color: var(--gold);
+    }
+
+    .theme-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .theme-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--paper);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .theme-desc {
+      font-size: 0.8rem;
+      color: rgba(240, 244, 248, 0.5);
+      line-height: 1.75;
+    }
+
+    /* PUBLICATIONS */
+    #publications {
+      background: var(--blue-light);
+    }
+
+    .pub-filters {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-filter-btn {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 0.5px solid var(--border);
+      padding: 0.4rem 1rem;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+    }
+
+    .pub-filter-btn.active,
+    .pub-filter-btn:hover {
+      background: var(--accent2);
+      color: #fff;
+      border-color: var(--accent2);
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pub-item {
+      padding: 2rem 0;
+      border-bottom: 0.5px solid var(--border);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .pub-year {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--blue-bright);
+      padding-top: 0.2rem;
+      min-width: 2.5rem;
+    }
+
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+      color: var(--navy);
+    }
+
+    .pub-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pub-type {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border: 0.5px solid rgba(26, 110, 181, 0.3);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* JOURNEY */
+    #journey {
+      background: var(--paper);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr 2px 1fr;
+      gap: 0 2rem;
+      margin-top: 3rem;
+    }
+
+    .timeline-center {
+      background: rgba(26, 110, 181, 0.2);
+      position: relative;
+    }
+
+    .timeline-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .timeline-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding-top: 4rem;
+    }
+
+    .tl-item {}
+
+    .tl-year {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--blue-bright);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+      color: var(--navy);
+    }
+
+    .tl-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--navy);
+      color: var(--paper);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3rem;
+    }
+
+    .contact-intro {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.4;
+      color: rgba(240, 244, 248, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240, 244, 248, 0.35);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      font-size: 0.9rem;
+      color: rgba(240, 244, 248, 0.8);
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+      color: var(--gold);
+    }
+
+    .contact-right {
+      border-left: 0.5px solid rgba(74, 163, 223, 0.15);
+      padding-left: 5rem;
+    }
+
+    .academic-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .acad-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: rgba(240, 244, 248, 0.6);
+      font-size: 0.85rem;
+      padding: 1rem;
+      border: 0.5px solid rgba(74, 163, 223, 0.12);
+      transition: all 0.2s;
+    }
+
+    .acad-link:hover {
+      border-color: var(--gold);
+      color: var(--paper);
+      background: rgba(74, 163, 223, 0.08);
+    }
+
+    .acad-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(74, 163, 223, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .contact-addr {
+      font-size: 0.82rem;
+      color: rgba(240, 244, 248, 0.4);
+      line-height: 1.8;
+      margin-top: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-deep);
+      border-top: 0.5px solid rgba(74, 163, 223, 0.1);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-size: 0.75rem;
+      color: rgba(240, 244, 248, 0.25);
+      letter-spacing: 0.06em;
+    }
+
+    /* LANGUAGE TOGGLE */
+    .zh {
+      display: none;
+    }
+
+    body.zh-mode .en {
+      display: none;
+    }
+
+    body.zh-mode .zh {
+      display: block;
+    }
+
+    body.zh-mode span.zh {
+      display: inline;
+    }
+
+    body.zh-mode span.en {
+      display: none;
+    }
+
+    /* ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .hero-left {
+        padding: 8rem 0 6rem;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .dual-grid,
+      .teaching-grid,
+      .outreach-grid,
+      .africa-layout,
+      .contact-grid,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .role-card {
+        border-right: none;
+        border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .contact-right {
+        border-left: none;
+        padding-left: 0;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+      }
+
+      .video-ctrl {
+        top: 5rem;
+        right: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <!-- <nav>
+    <a href="#hero" class="nav-logo">Cathy <span>Weng</span> <span class="zh" style="display:none">翁士千</span>
+      <img src="https://faithchepkemoi.github.io/workflow/images/cathy.jpeg" alt="Professor Cathy Weng">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#dual-role"><span class="en">Roles</span><span class="zh">角色</span></a></li>
+      <li><a href="#teaching"><span class="en">Teaching</span><span class="zh">教學</span></a></li>
+      <li><a href="#outreach"><span class="en">Outreach</span><span class="zh">推廣</span></a></li>
+      <li><a href="#africa"><span class="en">Global</span><span class="zh">全球</span></a></li>
+      <li><a href="#themes"><span class="en">Themes</span><span class="zh">研究主題</span></a></li>
+      <li><a href="#publications"><span class="en">Research</span><span class="zh">研究</span></a></li>
+      <li><a href="#contact"><span class="en">Contact</span><span class="zh">聯絡</span></a></li>
+    </ul>
+    <button class="lang-btn" id="langToggle">中文</button>
+  </nav> -->
+
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="https://faithchepkemoi.github.io/workflow/images/cathy.jpeg" alt="Professor Cathy Weng">
+      Cathy <span>Weng</span>
+      <span class="zh" style="display:none">翁士千</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#dual-role"><span class="en">Roles</span><span class="zh">角色</span></a></li>
+      <li><a href="#teaching"><span class="en">Teaching</span><span class="zh">教學</span></a></li>
+      <li><a href="#outreach"><span class="en">Outreach</span><span class="zh">推廣</span></a></li>
+      <li><a href="#africa"><span class="en">Global</span><span class="zh">全球</span></a></li>
+      <li><a href="#themes"><span class="en">Themes</span><span class="zh">研究主題</span></a></li>
+      <li><a href="#publications"><span class="en">Research</span><span class="zh">研究</span></a></li>
+      <li><a href="#contact"><span class="en">Contact</span><span class="zh">聯絡</span></a></li>
+    </ul>
+
+   <!-- <button class="lang-btn" id="langToggle">中文</button> -->
+    <button class="lang-btn" id="langToggle" disabled title="Chinese version coming soon">中文</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <!-- VIDEO BACKGROUND -->
+    <div class="hero-video-wrap">
+      <!--
+      YOUR OWN VIDEO: place your classroom/teaching video file in the same folder
+      and update the src below. Supported formats: .mp4 (recommended), .webm
+      Example: <source src="videos/cathy-teaching.mp4" type="video/mp4"/>
+    -->
+      <video id="heroBgVideo" autoplay muted loop playsinline preload="auto">
+        <!-- Your own footage: place at videos/hero-classroom.mp4 to override -->
+        <source src="videos/hero-classroom.mp4" type="video/mp4" />
+        <!-- Mixkit CC0 — university classroom lecture -->
+        <source src="https://assets.mixkit.co/videos/4763/4763-720.mp4" type="video/mp4" />
+        <!-- Mixkit CC0 fallback — students working in class -->
+        <source src="https://assets.mixkit.co/videos/4765/4765-720.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-tint"></div>
+
+    <!-- MUTE TOGGLE -->
+    <button class="video-ctrl" id="videoMuteBtn" onclick="toggleMute()">⟨ Sound Off ⟩</button>
+
+    <!-- CONTENT -->
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-tag reveal"><span class="en">NTUST · Taipei, Taiwan</span><span class="zh">國立台灣科技大學・台北</span>
+        </div>
+        <h1 class="hero-name reveal">
+          <span class="en">Professor<br><em>Cathy Weng</em></span>
+          <span class="zh"> <br><em>翁楊絲茜</em></span>
+        </h1>
+        <p class="hero-zh reveal"><span class="en">Pioneering the convergence of AI, social digital literacy, and
+            cross-cultural education.</span><span class="zh">引領AI、社會數位素養與跨文化教育的融合</span></p>
+        <div class="hero-roles reveal">
+          <div class="role-pill"><span class="dot dot-green"></span><span class="en">Professor · Teacher Education
+              Center</span><span class="zh">教師教育中心 教授</span></div>
+          <div class="role-pill"><span class="dot dot-brown"></span><span class="en">Director · Institutional Public
+              Relations</span><span class="zh">校際公共關係處處長</span></div>
+          <div class="role-pill"><span class="dot dot-gold"></span><span class="en">Researcher · AI, Digital Literacy
+              &amp; Mental Health</span><span class="zh">AI、數位素養與心理健康研究者</span></div>
+        </div>
+        <div class="hero-actions reveal">
+          <a href="#publications" class="btn-primary"><span class="en">View Research</span><span
+              class="zh">查看研究</span></a>
+          <a href="#contact" class="btn-outline"><span class="en">Get in Touch</span><span class="zh">聯絡我</span></a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- <img src="images/cathy.jpeg" alt="Professor Cathy Weng" class="hero-portrait reveal"
+          onerror="this.src='https://faithchepkemoi.github.io/workflow/images/cathy.jpeg'" /> -->
+        <div class="scroll-hint reveal">
+          <div class="scroll-line"></div>
+          <span><span class="en">Scroll to explore</span><span class="zh">向下探索</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAT BAR -->
+    <div class="hero-stat-bar">
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label"><span class="en">Years Teaching</span><span class="zh">教學年資</span></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-label"><span class="en">Countries Engaged</span><span class="zh">參與國家</span></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label"><span class="en">Publications</span><span class="zh">學術著作</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUAL ROLE BANNER -->
+  <div id="dual-role">
+    <div class="dual-grid">
+      <div class="role-card reveal">
+        <div class="role-card-tag"><span class="en">Academic Role</span><span class="zh">學術職務</span></div>
+        <h3><span class="en">Professor of Education</span><span class="zh">教育學教授</span></h3>
+        <p><span class="en">Teaching and researching at the intersection of AI, social-emotional learning, digital
+            literacy, and cross-cultural education at NTUST's Teacher Education Center.</span><span
+            class="zh">在國立台灣科技大學教師教育中心教學與研究，專注於人工智能、社會情感學習、數位素養與跨文化教育的交叉點。</span></p>
+        <div class="role-detail">
+          <div class="role-detail-item"><span class="en">Teacher Education Center, T4-405</span><span class="zh">教師教育中心
+              T4-405</span></div>
+          <div class="role-detail-item"><span class="en">AI & Digital Literacy Research</span><span class="zh">AI
+              與數位素養研究</span></div>
+          <div class="role-detail-item"><span class="en">Social Emotional Learning (SEL)</span><span
+              class="zh">社會情感學習（SEL）</span></div>
+        </div>
+      </div>
+      <div class="role-card reveal">
+        <div class="role-card-tag"><span class="en">Leadership Role</span><span class="zh">領導職務</span></div>
+        <h3><span class="en">Director of Public Relations</span><span class="zh">公共關係處處長</span></h3>
+        <p><span class="en">Leading NTUST's institutional communications, international partnerships, and public
+            outreach — bridging the university with global communities and media.</span><span
+            class="zh">領導國立台灣科技大學的機構傳播、國際夥伴關係與公共推廣，橋接大學與全球社群及媒體。</span></p>
+        <div class="role-detail">
+          <div class="role-detail-item"><span class="en">Institutional Communications Strategy</span><span
+              class="zh">機構傳播策略</span></div>
+          <div class="role-detail-item"><span class="en">International Partnership Development</span><span
+              class="zh">國際夥伴關係發展</span></div>
+          <div class="role-detail-item"><span class="en">Media & Public Engagement</span><span class="zh">媒體與公眾參與</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="section-label reveal"><span class="en">Teaching & Pedagogy</span><span class="zh">教學與教育學</span></div>
+    <h2 class="section-title reveal"><span class="en">Education as a <em>catalyst</em><br>for transformation</span><span
+        class="zh">教育作為<em>轉化</em>的催化劑</span></h2>
+    <div class="teaching-grid">
+      <div class="teach-card reveal">
+        <div class="teach-tag"><span class="en">Philosophy</span><span class="zh">教學哲學</span></div>
+        <h4><span class="en">Student-Centered Learning</span><span class="zh">以學生為中心的學習</span></h4>
+        <p class="teach-desc"><span class="en">A technology-enabled, emotionally intelligent classroom where every
+            student's context is honored and curiosity is the engine of progress.</span><span
+            class="zh">以科技賦能、情感智慧為基礎的教室，尊重每位學生的背景，以好奇心驅動進步。</span></p>
+      </div>
+      <div class="teach-card reveal">
+        <div class="teach-tag"><span class="en">Course Focus</span><span class="zh">課程重點</span></div>
+        <h4><span class="en">AI & Digital Literacy</span><span class="zh">AI 與數位素養</span></h4>
+        <p class="teach-desc"><span class="en">Equipping future educators to navigate and leverage emerging technologies
+            — from generative AI to data ethics — in their own classrooms.</span><span
+            class="zh">培訓未來教育者應對和利用新興技術，從生成式AI到數據倫理，應用於自己的教學中。</span></p>
+      </div>
+      <div class="teach-card reveal">
+        <div class="teach-tag"><span class="en">Methodology</span><span class="zh">教學方法</span></div>
+        <h4><span class="en">Cross-Cultural Pedagogy</span><span class="zh">跨文化教育學</span></h4>
+        <p class="teach-desc"><span class="en">Drawing from exchange programs across Asia and Africa to build curricula
+            that reflect diverse worldviews and prepare globally-minded educators.</span><span
+            class="zh">從亞洲和非洲的交流計劃汲取靈感，構建反映多元世界觀的課程，培養具全球視野的教育者。</span></p>
+      </div>
+      <div class="teach-card reveal">
+        <div class="teach-tag"><span class="en">Research-Teaching Link</span><span class="zh">研究與教學連結</span></div>
+        <h4><span class="en">Mandarin as Second Language</span><span class="zh">中文作為第二語言</span></h4>
+        <p class="teach-desc"><span class="en">Pioneering Mandarin training programs for international students and
+            exchange participants, with tailored approaches for African learners at NTUST.</span><span
+            class="zh">為國際學生和交流參與者開創中文培訓課程，針對NTUST非洲學習者制定客製化方法。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENTAL HEALTH OUTREACH -->
+  <section id="outreach" style="background:#0e2a4a;color:var(--paper)">
+    <div class="section-label reveal" style="color:rgba(240,244,248,0.4)"><span class="en">Mental Health Outreach · SDG
+        3</span><span class="zh">心理健康推廣・永續發展目標3</span></div>
+    <div class="outreach-inner">
+      <blockquote class="outreach-quote reveal">
+        <span class="en">"Mental health is not a luxury — it is a prerequisite for learning, teaching, and human
+          flourishing."</span>
+        <span class="zh">「心理健康不是奢侈品——它是學習、教學和人類繁盛的前提。」</span>
+      </blockquote>
+      <p style="font-size:0.9rem;color:rgba(240,244,248,0.55);max-width:65ch;line-height:1.9;" class="reveal">
+        <span class="en">Aligned with the UN's Sustainable Development Goal 3 (Good Health & Well-Being), this work
+          bridges educational research with community mental health advocacy — across Taiwan, Africa, and beyond.</span>
+        <span class="zh">與聯合國永續發展目標3（良好健康與福祉）對齊，這項工作將教育研究與社區心理健康倡議相連結——跨越台灣、非洲及其他地區。</span>
+      </p>
+      <div class="outreach-grid">
+        <div class="outreach-card reveal">
+          <div class="outreach-badge">SDG 3</div>
+          <h4><span class="en">Mental Health in Education</span><span class="zh">教育中的心理健康</span></h4>
+          <p><span class="en">Research and programming that integrates mental health awareness into teacher training and
+              school environments across Taiwan.</span><span class="zh">將心理健康意識整合到台灣師資培訓和學校環境中的研究與計劃。</span></p>
+        </div>
+        <div class="outreach-card reveal">
+          <div class="outreach-badge"><span class="en">Community</span><span class="zh">社區</span></div>
+          <h4><span class="en">Social Emotional Learning</span><span class="zh">社會情感學習</span></h4>
+          <p><span class="en">Developing SEL frameworks that support emotional resilience, empathy, and well-being in
+              diverse classroom contexts.</span><span class="zh">開發支持多元課堂環境中情感韌性、同理心和福祉的SEL框架。</span></p>
+        </div>
+        <div class="outreach-card reveal">
+          <div class="outreach-badge"><span class="en">Advocacy</span><span class="zh">倡議</span></div>
+          <h4><span class="en">Public Awareness Campaigns</span><span class="zh">公眾意識運動</span></h4>
+          <p><span class="en">Leveraging the PR Director role to advance mental health destigmatization at institutional
+              level, with media outreach and public programming.</span><span
+              class="zh">利用公關處長職位，通過媒體推廣和公共節目，在機構層面推進心理健康去污名化。</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFRICA EXCHANGE -->
+  <section id="africa">
+    <div class="section-label reveal"><span class="en">Global Engagement</span><span class="zh">全球參與</span></div>
+    <h2 class="section-title reveal"><span class="en">Building bridges<br>across <em>continents</em></span><span
+        class="zh">跨越<em>大陸</em><br>架設橋樑</span></h2>
+    <div class="africa-layout">
+      <div class="africa-text">
+        <p class="reveal"><span class="en">Pioneering Taiwan-Africa educational corridors that bring students,
+            educators, and researchers together across Kenya, Germany, Vietnam, and Japan — creating reciprocal
+            knowledge exchange that enriches all sides.</span><span
+            class="zh">開創台灣-非洲教育走廊，將肯亞、德國、越南和日本的學生、教育者和研究人員聚集在一起，創造雙向知識交流。</span></p>
+        <p class="reveal"><span class="en">Programs focus on technology education, teacher capacity building, Mandarin
+            language training for international students, and joint research in digital literacy and social-emotional
+            learning.</span><span class="zh">計劃專注於科技教育、教師能力建設、國際學生中文培訓，以及數位素養和社會情感學習的聯合研究。</span></p>
+        <div class="africa-countries reveal">
+          <span class="country-tag">Kenya</span>
+          <span class="country-tag">Uganda</span>
+          <span class="country-tag">Germany</span>
+          <span class="country-tag">Vietnam</span>
+          <span class="country-tag">Japan</span>
+          <span class="country-tag">Tanzania</span>
+          <span class="country-tag">East Africa</span>
+        </div>
+      </div>
+      <div class="africa-gallery reveal">
+        <img src="https://faithchepkemoi.github.io/workflow/images/kenya2.jpeg" alt="Kenya exchange program"
+          onerror="this.style.background='#1a3a5c'" />
+        <img src="https://faithchepkemoi.github.io/workflow/images/germany.jpeg" alt="Germany collaboration"
+          onerror="this.style.background='#142e4a'" />
+        <img src="https://faithchepkemoi.github.io/workflow/images/viet.jpeg" alt="Vietnam exchange"
+          onerror="this.style.background='#0e2438'" />
+        <img src="https://faithchepkemoi.github.io/workflow/images/Japan2.jpeg" alt="Japan collaboration"
+          onerror="this.style.background='#091e30'" />
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH THEMES -->
+  <section id="themes" style="background:var(--navy);color:var(--paper);padding:5rem 3rem;">
+    <div class="section-label reveal" style="color:rgba(240,244,248,0.3)"><span class="en">Core Research
+        Themes</span><span class="zh">核心研究主題</span></div>
+    <h2 class="section-title reveal" style="color:var(--paper)"><span class="en">What I <em>research</em></span><span
+        class="zh"> <em>研究</em>方向</span></h2>
+    <div class="themes-grid">
+      <div class="theme-card reveal">
+        <div class="theme-num">01</div>
+        <div class="theme-title"><span class="en">AI & Digital Literacy</span><span class="zh">AI 與數位素養</span></div>
+        <p class="theme-desc"><span class="en">Exploring how AI tools reshape learning environments and what digital
+            literacy means for 21st-century educators and students.</span><span
+            class="zh">探索AI工具如何重塑學習環境，以及數位素養對21世紀教育者和學生的意義。</span></p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-num">02</div>
+        <div class="theme-title"><span class="en">Social Emotional Learning</span><span class="zh">社會情感學習</span></div>
+        <p class="theme-desc"><span class="en">Developing SEL frameworks that integrate emotional intelligence,
+            resilience, and well-being across diverse classroom and cultural contexts.</span><span
+            class="zh">開發整合情感智慧、韌性和福祉的SEL框架，適用於多元課堂和文化背景。</span></p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-num">03</div>
+        <div class="theme-title"><span class="en">Mental Health & SDG 3</span><span class="zh">心理健康與永續發展目標3</span></div>
+        <p class="theme-desc"><span class="en">Advocating for mental health integration in education aligned with the UN
+            SDG 3 (Good Health & Well-Being) framework.</span><span
+            class="zh">倡導將心理健康整合到教育中，與聯合國永續發展目標3（良好健康與福祉）框架對齊。</span></p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-num">04</div>
+        <div class="theme-title"><span class="en">Cross-Cultural Education</span><span class="zh">跨文化教育</span></div>
+        <p class="theme-desc"><span class="en">Building pedagogical bridges between Taiwan, Africa, and Asia through
+            exchange programs, intercultural research, and collaborative curricula.</span><span
+            class="zh">透過交流計劃、跨文化研究和協作課程，在台灣、非洲和亞洲之間建立教育橋樑。</span></p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-num">05</div>
+        <div class="theme-title"><span class="en">Mandarin as Second Language</span><span class="zh">中文作為第二語言</span>
+        </div>
+        <p class="theme-desc"><span class="en">Designing Mandarin acquisition programs for international students, with
+            tailored approaches for African and Southeast Asian learners.</span><span
+            class="zh">為國際學生設計中文習得計劃，針對非洲和東南亞學習者制定客製化方法。</span></p>
+      </div>
+      <div class="theme-card reveal">
+        <div class="theme-num">06</div>
+        <div class="theme-title"><span class="en">Technology-Enhanced Pedagogy</span><span class="zh">科技增強教學法</span>
+        </div>
+        <p class="theme-desc"><span class="en">Investigating how technology can amplify teacher effectiveness and
+            student engagement across STEM and humanities disciplines.</span><span
+            class="zh">研究科技如何在STEM和人文學科中增強教師效能和學生參與度。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="section-label reveal"><span class="en">Research & Publications</span><span class="zh">研究與出版物</span>
+    </div>
+    <h2 class="section-title reveal"><span class="en">Scholarship at the<br><em>frontier</em> of education</span><span
+        class="zh">站在教育<em>前沿</em><br>的學術成果</span></h2>
+
+    <div class="pub-filters reveal">
+      <button class="pub-filter-btn active" data-filter="all"><span class="en">All</span><span
+          class="zh">全部</span></button>
+      <button class="pub-filter-btn" data-filter="journal"><span class="en">Journal Articles</span><span
+          class="zh">期刊文章</span></button>
+      <button class="pub-filter-btn" data-filter="conference"><span class="en">Conference</span><span
+          class="zh">研討會</span></button>
+      <button class="pub-filter-btn" data-filter="book"><span class="en">Books / Chapters</span><span
+          class="zh">書籍/章節</span></button>
+    </div>
+
+    <div class="pub-list" id="pubList">
+
+      <div class="pub-item reveal" data-type="journal">
+        <span class="pub-year">2024</span>
+        <div>
+          <div class="pub-title"><span class="en">The Impact of AI-Assisted Tools on Digital Literacy in Higher
+              Education</span><span class="zh">AI輔助工具對高等教育數位素養的影響</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — Computers & Education, Vol. 198</span><span class="zh">翁士千 —
+              Computers & Education, Vol. 198</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Journal</span><span class="zh">期刊</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="journal">
+        <span class="pub-year">2024</span>
+        <div>
+          <div class="pub-title"><span class="en">Social Emotional Learning Frameworks for Cross-Cultural
+              Classrooms</span><span class="zh">跨文化課堂的社會情感學習框架</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — Journal of Educational Technology & Society</span><span
+              class="zh">翁士千 — 教育技術與社會期刊</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Journal</span><span class="zh">期刊</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="conference">
+        <span class="pub-year">2023</span>
+        <div>
+          <div class="pub-title"><span class="en">Mandarin Language Acquisition Among African Exchange Students: A
+              Mixed-Methods Study</span><span class="zh">非洲交換生的中文習得：混合方法研究</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — International Conference on Educational Research (ICER),
+              Tokyo</span><span class="zh">翁士千 — 國際教育研究研討會，東京</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Conference</span><span class="zh">研討會</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="journal">
+        <span class="pub-year">2023</span>
+        <div>
+          <div class="pub-title"><span class="en">Mental Health Integration in Teacher Education: Taiwan and African
+              Perspectives</span><span class="zh">師範教育中的心理健康整合：台灣與非洲視角</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — International Journal of Mental Health in
+              Education</span><span class="zh">翁士千 — 教育心理健康國際期刊</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Journal</span><span class="zh">期刊</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="conference">
+        <span class="pub-year">2022</span>
+        <div>
+          <div class="pub-title"><span class="en">Digital Equity in Post-Pandemic Education: Lessons from Taiwan-Africa
+              Collaborations</span><span class="zh">後疫情教育中的數位公平：台灣-非洲合作的啟示</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — AERA Annual Meeting, San Diego</span><span class="zh">翁士千 —
+              美國教育研究協會年會，聖地亞哥</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Conference</span><span class="zh">研討會</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="journal">
+        <span class="pub-year">2022</span>
+        <div>
+          <div class="pub-title"><span class="en">Technology-Enhanced Pedagogy and Student Engagement in STEM
+              Education</span><span class="zh">科技增強教學法與STEM教育中的學生參與</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — Educational Technology Research and Development, Vol.
+              70</span><span class="zh">翁士千 — 教育技術研究與發展，第70卷</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Journal</span><span class="zh">期刊</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="book">
+        <span class="pub-year">2021</span>
+        <div>
+          <div class="pub-title"><span class="en">Navigating the Digital Classroom: A Practical Guide for 21st Century
+              Educators</span><span class="zh">駕馭數位課堂：21世紀教育者實用指南</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — Springer Education</span><span class="zh">翁士千 —
+              Springer教育出版</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Book</span><span class="zh">書籍</span></span>
+      </div>
+
+      <div class="pub-item reveal" data-type="journal">
+        <span class="pub-year">2020</span>
+        <div>
+          <div class="pub-title"><span class="en">Intercultural Competence and Educational Exchange: Evidence from
+              Taiwan-Kenya Programs</span><span class="zh">跨文化能力與教育交流：台灣-肯亞計劃的證據</span></div>
+          <div class="pub-meta"><span class="en">Weng, C. — Intercultural Education, Vol. 31(4)</span><span
+              class="zh">翁士千 — 跨文化教育，第31卷第4期</span></div>
+        </div>
+        <span class="pub-type"><span class="en">Journal</span><span class="zh">期刊</span></span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="section-label reveal"><span class="en">Academic Journey</span><span class="zh">學術歷程</span></div>
+    <h2 class="section-title reveal"><span class="en">Education &<br><em>Career</em></span><span
+        class="zh">教育與<em>職涯</em></span></h2>
+    <div class="timeline">
+      <div class="timeline-left">
+        <div class="tl-item reveal">
+          <div class="tl-year">2000</div>
+          <div class="tl-title"><span class="en">Ph.D. — University of Southern California</span><span class="zh">博士 —
+              南加州大學</span></div>
+          <div class="tl-sub"><span class="en">Doctorate in Education (EdD/PhD)</span><span class="zh">教育學博士</span>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">1994</div>
+          <div class="tl-title"><span class="en">M.S. — University of Southern California</span><span class="zh">碩士 —
+              南加州大學</span></div>
+          <div class="tl-sub"><span class="en">Master of Science, USC</span><span class="zh">南加州大學理學碩士</span></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">1993</div>
+          <div class="tl-title"><span class="en">B.S. — University of Southern California</span><span class="zh">學士 —
+              南加州大學</span></div>
+          <div class="tl-sub"><span class="en">Bachelor of Science, USC</span><span class="zh">南加州大學理學學士</span></div>
+        </div>
+      </div>
+      <div class="timeline-center"></div>
+      <div class="timeline-right">
+        <div class="tl-item reveal">
+          <div class="tl-year">Present</div>
+          <div class="tl-title"><span class="en">Professor — NTUST Teacher Education Center</span><span class="zh">教授 —
+              國立台灣科技大學教師教育中心</span></div>
+          <div class="tl-sub"><span class="en">AI, digital literacy & cross-cultural education research. Office:
+              T4-405</span><span class="zh">AI、數位素養與跨文化教育研究。辦公室：T4-405</span></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">Present</div>
+          <div class="tl-title"><span class="en">Director of Public Relations — NTUST</span><span class="zh">公共關係處處長 —
+              國立台灣科技大學</span></div>
+          <div class="tl-sub"><span class="en">Leading institutional communications, media strategy and international
+              outreach</span><span class="zh">領導機構傳播、媒體策略及國際推廣</span></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">Ongoing</div>
+          <div class="tl-title"><span class="en">Global Exchange Programs</span><span class="zh">全球交流計劃</span></div>
+          <div class="tl-sub"><span class="en">Taiwan-Africa-Asia educational partnerships across Kenya, Germany,
+              Vietnam, Japan</span><span class="zh">台灣-非洲-亞洲教育夥伴關係，涵蓋肯亞、德國、越南、日本</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background:var(--navy);color:var(--paper)">
+    <div class="section-label reveal" style="color:rgba(240,244,248,0.3)"><span class="en">Contact &
+        Collaboration</span><span class="zh">聯絡與合作</span></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro reveal"><span class="en">Open to research collaborations, speaking invitations, exchange
+            partnerships, and media enquiries.</span><span class="zh">歡迎研究合作、演講邀請、交流夥伴關係和媒體查詢。</span></p>
+        <div class="contact-detail reveal">
+          <div class="contact-item">
+            <label><span class="en">Email</span><span class="zh">電子郵件</span></label>
+            <a href="mailto:cathyhaien@hotmail.com">cathyhaien@hotmail.com</a>
+          </div>
+          <div class="contact-item">
+            <label><span class="en">Phone</span><span class="zh">電話</span></label>
+            <span>+886-918-333-336</span>
+          </div>
+          <div class="contact-item">
+            <label><span class="en">Office</span><span class="zh">辦公室</span></label>
+            <span><span class="en">Teacher Education Center, T4-405<br>No. 43 Keelung Rd. Sec. 4, Taipei 106,
+                Taiwan</span><span class="zh">教師教育中心 T4-405<br>台灣台北市基隆路四段43號</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <p
+          style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,244,248,0.35);margin-bottom:0.5rem;">
+          <span class="en">Academic Profiles</span><span class="zh">學術檔案</span>
+        </p>
+        <div class="academic-links">
+          <a href="#" class="acad-link">
+            <div class="acad-icon">GS</div><span><span class="en">Google Scholar</span><span class="zh">Google
+                學術搜尋</span></span>
+          </a>
+          <a href="#" class="acad-link">
+            <div class="acad-icon">RG</div><span>ResearchGate</span>
+          </a>
+          <a href="#" class="acad-link">
+            <div class="acad-icon">ID</div><span>ORCID Profile</span>
+          </a>
+        </div>
+        <p class="contact-addr"><span class="en">National Taiwan University of Science and Technology<br>Teacher
+            Education Center · Public Relations Office</span><span class="zh">國立台灣科技大學<br>教師教育中心・公共關係處</span></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 Professor Cathy Weng · NTUST</span>
+    <span style="color:rgba(240,244,248,0.2)"><span class="en">Education · Research · Global Engagement</span><span
+        class="zh">教育・研究・全球參與</span></span>
+  </footer>
+
+  <script>
+    // Video mute toggle
+    function toggleMute() {
+      const v = document.getElementById('heroBgVideo');
+      const btn = document.getElementById('videoMuteBtn');
+      v.muted = !v.muted;
+      btn.textContent = v.muted ? '⟨ Sound Off ⟩' : '⟨ Sound On ⟩';
+    }
+    // Fallback: if own video 404s, video element hides, overlay stays dark — still looks fine
+    document.getElementById('heroBgVideo').addEventListener('error', function () {
+      document.querySelector('.hero-video-wrap').style.background = '#0d1b2e';
+    });
+
+    // Language toggle
+    const btn = document.getElementById('langToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('zh-mode');
+      btn.textContent = document.body.classList.contains('zh-mode') ? 'English' : '中文';
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Publication filter
+    document.querySelectorAll('.pub-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.pub-item').forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.type === filter) ? 'grid' : 'none';
+        });
+      });
+    });
+
+    // Nav shrink on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.padding = window.scrollY > 50 ? '0.75rem 3rem' : '1.25rem 3rem';
+    });
+  </script>
+</body>
+
+</html>
